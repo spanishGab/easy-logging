@@ -1,0 +1,23 @@
+{
+  "name": "less-logging",
+  "version": "0.0.1",
+  "description": "Simple console logging library.",
+  "main": "index.js",
+  "author": "Gabriel Espanhol Santos",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "npx tsc --build && npm start",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "luxon": "^3.4.4",
+    "pino": "^8.16.2",
+    "pino-pretty": "^10.2.3",
+    "typescript": "^5.3.2"
+  },
+  "devDependencies": {
+    "@types/luxon": "^3.3.7",
+    "@types/node": "^20.10.3"
+  }
+}
