@@ -2,8 +2,8 @@
 
 Less logging is a simple logging library built with [pinojs](https://github.com/pinojs). You can use it in two ways: as a simple console logger or as a context logger.
 
-1. [But what is the difference](#but-what-is-the-difference)
-2. [Ok, but how do it works?](#ok-but-how-do-it-works)
+1. [But what is the difference?](#but-what-is-the-difference)
+2. [Ok, but how does it works?](#ok-but-how-do-it-works)
 3. [Simple logging](#simple-logging)
 4. [Context logging](#context-logging)
 5. [Docs](#docs)
@@ -12,9 +12,9 @@ Less logging is a simple logging library built with [pinojs](https://github.com/
 
 ## But what is the difference?
 
-It is a simple logger as it provides you four basic logging methods which enables you to log your system's operations to the console.
+It is a **simple logger** as it provides you four basic logging methods which enables you to log your system's operations to the console.
 
-It is also a context logger as it provides you an extra feature that enables you to log in different contexts (i.e different Web requests) where you need each log to be attached to a specific `executionId`. This allows you to have multiple execution contexts in paralel using, for example, [node:async_hooks](https://nodejs.org/api/async_hooks.html) to manage multiple `executionIds`.
+It is also a **context logger** as it provides you an extra feature that enables you to log in different contexts (i.e different Web requests) where you need each log to be attached to a specific `executionId`. This allows you to have multiple execution contexts in paralel using, for example, [node:async_hooks](https://nodejs.org/api/async_hooks.html) to manage multiple `executionIds`.
 
 ## Ok, but how do it works?
 
@@ -27,6 +27,9 @@ Now that we have it installed, let's use it!
 Here is an usage example when all you need is a simple logging feature:
 
 ```ts
+import { randomUUID } from "crypto";
+import { SimpleLogger } from "simple-logging";
+
 class Exc extends Error {
   toJSON() {
     return {
@@ -38,15 +41,15 @@ class Exc extends Error {
 const executionId = randomUUID();
 const logger = new SimpleLogger(
   {
-    isEnabled: true,
-    level: "debug",
-    logAttachments: () => {
+    isEnabled: true, // activates logs
+    level: "debug", // tells in which level logs must start
+    logAttachments: () => { // defines extra properties to be included in each log register
       return {
         executionId,
         operationType: 'File Processing',
       };
     },
-    prettyLog: true,
+    prettyLog: true, // formats logs in a pretty way
   },
 );
 
@@ -56,7 +59,7 @@ logger.warn({ name: "example.log", details: "Warning" });
 logger.error({ name: "example.log.error", error: new Exc("Oops") });
 ```
 
-And this is what we get:
+Here we're only using all methods `SimpleLogger` provides us to log information in different levels. And this is what we get:
 
 ```log
 [16:50:01.827] DEBUG:
@@ -100,6 +103,10 @@ Quite *simple*, right? Now let's complicate it a little bit.
 When you have different contexts running in paralel maybe you need something more robust to manage your logs:
 
 ```ts
+import { AsyncLocalStorage } from "async_hooks";
+import { ContextLogger } from "context-logging";
+import { randomUUID } from "crypto";
+
 const localStorage = new AsyncLocalStorage<Map<string, string>>();
 
 class Ctx {
@@ -126,17 +133,17 @@ const ctx = new Ctx();
 
 const logger = new ContextLogger(
   {
-    isEnabled: true,
-    level: "debug",
-    logAttachments: () => {
+    isEnabled: true, // activates logs
+    level: "debug", // tells in which level logs must start
+    logAttachments: () => { // defines extra properties to be included in each log register
       return {
         executionId: ctx.executionId,
       };
     },
-    prettyLog: true,
+    prettyLog: true, // formats logs in a pretty way
   },
-  ctx,
-  true
+  ctx, // a class used to manage logging context
+  true, // activates logs streaming
 );
 
 const fn1 = async () => {
@@ -157,10 +164,10 @@ const fn2 = async () => {
   });
 };
 
-Promise.all([fn1(), fn2()])
+Promise.all([fn1(), fn2()]);
 ```
 
-And this is what we get:
+For this example, we needed a logger that logs information for different contexts separately and only logs <span style="color: purple">DEBUG</span> information if an error occourred. In this case <span style="color: purple">DEBUG</span> information will allways be logged after the first <span style="color: red">ERROR</span> log and using the <span style="color: green">INFO</span> level. And this is what we get:
 
 ```log
 [17:33:04.006] INFO:

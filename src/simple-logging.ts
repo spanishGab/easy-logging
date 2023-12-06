@@ -53,55 +53,51 @@ export class SimpleLogger implements ILogger {
   protected logger: Logger;
   protected readonly instance = pino;
 
+  /**
+   * Enables logging in the console in four levels: debug, info, warn and error
+   * @param {LoggerSetup} setup - Logger's configuration.
+   */
   constructor(setup: LoggerSetup) {
-    /**
-     * Enables logging in the console in four levels: debug, info, warn and error
-     * @param {LoggerSetup} setup - Logger's configuration.
-     */
     this.logger = this.setup(setup);
   }
 
+  /**
+   * Logs in the debug level.
+   * @summary Use this to help find bugs or understand the code flow.
+   * @param {Info} info - The information you want to go inside the log.
+   * @return {void}
+   */
   public debug(info: Info): void {
-    /**
-     * Logs in the debug level.
-     * @summary Use this to help find bugs or understand the code flow.
-     * @param {Info} info - The information you want to go inside the log.
-     * @return {void}
-     */
-
     this.logger.debug(this.formatLog(info));
   }
 
+  /**
+   * Logs in the information level.
+   * @summary Use this to inform about important things in your flow.
+   * @param {Info} info - The information you want to go inside the log.
+   * @return {void}
+   */
   public info(info: Info): void {
-    /**
-     * Logs in the information level.
-     * @summary Use this to inform about important things in your flow.
-     * @param {Info} info - The information you want to go inside the log.
-     * @return {void}
-     */
-
     this.logger.info(this.formatLog(info));
   }
 
+  /**
+   * Logs in the warning level.
+   * @summary Use this to warn that something unexpected happened in the flow.
+   * @param {Info} info - The information you want to go inside the log.
+   * @return {void}
+   */
   public warn(info: Info): void {
-    /**
-     * Logs in the warning level.
-     * @summary Use this to warn that something unexpected happened in the flow.
-     * @param {Info} info - The information you want to go inside the log.
-     * @return {void}
-     */
-
     this.logger.warn(this.formatLog(info));
   }
 
+  /**
+   * Logs in the error level.
+   * @summary Use this to inform that an error occourred in the flow.
+   * @param {Info} info - The information you want to go inside the log.
+   * @return {void}
+   */
   public error(info: ErrorInfo): void {
-    /**
-     * Logs in the error level.
-     * @summary Use this to inform that an error occourred in the flow.
-     * @param {Info} info - The information you want to go inside the log.
-     * @return {void}
-     */
-
     this.logger.error(this.formatErrorLog(info));
   }
 
