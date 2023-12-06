@@ -1,12 +1,14 @@
 {
-  "name": "less-logging",
+  "name": "@spanishgab/easy-logging",
   "version": "0.0.1",
   "description": "Simple console logging library.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "Gabriel Espanhol Santos",
   "license": "MIT",
   "private": false,
+  "types": "dist/index.d.ts",
   "scripts": {
+    "build": "tsc",
     "dev": "npx tsc --build && npm start",
     "start": "node dist/index.js"
   },
