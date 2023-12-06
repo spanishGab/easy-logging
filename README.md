@@ -28,7 +28,7 @@ Here is an usage example when all you need is a simple logging feature:
 
 ```ts
 import { randomUUID } from "crypto";
-import { SimpleLogger } from "simple-logging";
+import { SimpleLogger } from '@spanishgab/easy-logging';
 
 class Exc extends Error {
   toJSON() {
@@ -104,8 +104,8 @@ When you have different contexts running in paralel maybe you need something mor
 
 ```ts
 import { AsyncLocalStorage } from "async_hooks";
-import { ContextLogger } from "context-logging";
 import { randomUUID } from "crypto";
+import { ContextLogger } from '@spanishgab/easy-logging';
 
 const localStorage = new AsyncLocalStorage<Map<string, string>>();
 
