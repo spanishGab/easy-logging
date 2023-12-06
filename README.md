@@ -1,6 +1,6 @@
-# Less logging
+# Easy logging
 
-Less logging is a simple logging library built with [pinojs](https://github.com/pinojs). You can use it in two ways: as a simple console logger or as a context logger.
+Easy logging is a simple logging library built with [pinojs](https://github.com/pinojs). You can use it in two ways: as a simple console logger or as a context logger.
 
 1. [But what is the difference?](#but-what-is-the-difference)
 2. [Ok, but how does it works?](#ok-but-how-do-it-works)
