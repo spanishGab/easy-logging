@@ -18,7 +18,7 @@ It is also a **context logger** as it provides you an extra feature that enables
 
 ## Ok, but how do it works?
 
-First of all you need to install it using your favorite package manager, go ahead and run the command `npm i less-logging` or `yarn add less-logging` to add it to your project.
+First of all you need to install it using your favorite package manager, go ahead and run the command `npm i @spanishgab/easy-logging` or `yarn add @spanishgab/easy-logging` to add it to your project.
 
 Now that we have it installed, let's use it!
 
