@@ -8,6 +8,9 @@
   "private": false,
   "types": "dist/index.d.ts",
   "files": ["/dist"],
+  "repository": {
+    "url": "https://github.com/spanishGab/easy-logging"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "npx tsc --build && npm start",
