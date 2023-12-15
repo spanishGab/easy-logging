@@ -1,13 +1,15 @@
 {
   "name": "@spanishgab/easy-logging",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple console logging library.",
   "main": "dist/index.js",
   "author": "Gabriel Espanhol Santos",
   "license": "MIT",
   "private": false,
   "types": "dist/index.d.ts",
-  "files": ["/dist"],
+  "files": [
+    "/dist"
+  ],
   "repository": {
     "url": "https://github.com/spanishGab/easy-logging"
   },
