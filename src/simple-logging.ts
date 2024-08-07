@@ -7,6 +7,8 @@ export interface ISerializedError {
   /** @field The error message */
   message: string;
   [key: string]: unknown;
+  /** @field The error cause */
+  cause: unknown;
 }
 
 export type Info = Record<string, unknown> & { name: string; details?: string };
@@ -134,8 +136,9 @@ export class SimpleLogger implements ILogger {
     let serializedError: ISerializedError = {
       type: error.name,
       message: error.message,
+      cause: error.cause,
     };
-    if (typeof error.toJSON === 'function') {
+    if (typeof error.toJSON === "function") {
       serializedError = {
         ...serializedError,
         ...error.toJSON(),
