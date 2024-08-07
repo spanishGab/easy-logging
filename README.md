@@ -18,7 +18,7 @@ It is also a **context logger** as it provides you an extra feature that enables
 
 ## Ok, but how do it works?
 
-First of all you need to install it using your favorite package manager, go ahead and run the command `npm i less-logging` or `yarn add less-logging` to add it to your project.
+First of all you need to install it using your favorite package manager, go ahead and run the command `npm i @spanishgab/easy-logging` or `yarn add @spanishgab/easy-logging` to add it to your project.
 
 Now that we have it installed, let's use it!
 
@@ -28,7 +28,7 @@ Here is an usage example when all you need is a simple logging feature:
 
 ```ts
 import { randomUUID } from "crypto";
-import { SimpleLogger } from "simple-logging";
+import { SimpleLogger } from '@spanishgab/easy-logging';
 
 class Exc extends Error {
   toJSON() {
@@ -104,8 +104,8 @@ When you have different contexts running in paralel maybe you need something mor
 
 ```ts
 import { AsyncLocalStorage } from "async_hooks";
-import { ContextLogger } from "context-logging";
 import { randomUUID } from "crypto";
+import { ContextLogger } from '@spanishgab/easy-logging';
 
 const localStorage = new AsyncLocalStorage<Map<string, string>>();
 
