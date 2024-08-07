@@ -135,7 +135,7 @@ export class SimpleLogger implements ILogger {
       type: error.name,
       message: error.message,
     };
-    if (!!error.toJSON) {
+    if (typeof error.toJSON === 'function') {
       serializedError = {
         ...serializedError,
         ...error.toJSON(),
